@@ -232,16 +232,18 @@
     // Lampor
     T.inserts.forEach(i => { if (i.shape !== 'arrow') drawLight(i, t); });
 
-    // Väggar
-    ctx.lineCap = 'round'; ctx.lineJoin = 'round';
-    ctx.strokeStyle = '#c8923a'; ctx.lineWidth = 14;
-    ctx.beginPath(); ctx.arc(T.dome.cx, T.dome.cy, T.dome.r, Math.PI, 0); ctx.stroke();
-    T.walls.forEach(w => {
-      path(w.pts, w.closed);
-      if (w.closed) { ctx.fillStyle = '#6e5a3a'; ctx.fill(); }
-      ctx.strokeStyle = w.kind === 'outer' ? '#c8923a' : '#d9c39a'; ctx.lineWidth = w.thick; ctx.stroke();
-    });
-    T.posts.forEach(p => { ctx.fillStyle = '#d9c39a'; ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, 7); ctx.fill(); });
+    // Väggar (när bakgrundsbilden finns är väggarna redan målade i den)
+    if (!IMAGES.background) {
+      ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+      ctx.strokeStyle = '#c8923a'; ctx.lineWidth = 14;
+      ctx.beginPath(); ctx.arc(T.dome.cx, T.dome.cy, T.dome.r, Math.PI, 0); ctx.stroke();
+      T.walls.forEach(w => {
+        path(w.pts, w.closed);
+        if (w.closed) { ctx.fillStyle = '#6e5a3a'; ctx.fill(); }
+        ctx.strokeStyle = w.kind === 'outer' ? '#c8923a' : '#d9c39a'; ctx.lineWidth = w.thick; ctx.stroke();
+      });
+      T.posts.forEach(p => { ctx.fillStyle = '#d9c39a'; ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, 7); ctx.fill(); });
+    }
 
     // Slingshots
     T.slings.forEach(s => {
