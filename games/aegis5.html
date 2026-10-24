@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <title>Station Aegis 5 – Spelhörnan</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .aegis-wrap { --stage-w: 520px; }
+    .dmd {
+      width: min(100%, var(--stage-w));
+      padding: 10px 14px;
+      background: #120a05;
+      border: 4px solid var(--ink);
+      border-radius: 14px;
+      box-shadow: 4px 4px 0 var(--ink);
+      color: #ff9f43;
+      font-family: "Courier New", ui-monospace, monospace;
+      font-weight: 900;
+      text-shadow: 0 0 8px rgba(255, 159, 67, .7);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2px 12px;
+    }
+    .dmd .score { font-size: clamp(1.6rem, 6vw, 2.3rem); letter-spacing: 2px; }
+    .dmd .ball { align-self: end; font-size: .95rem; text-align: right; }
+    .dmd .msg { grid-column: 1 / -1; min-height: 1.4em; font-size: 1.05rem; letter-spacing: 1px; color: #3ec5ff; text-shadow: 0 0 8px rgba(62, 197, 255, .7); }
+    .aegis-stage { --stage-w: 520px; background: #0b0a10; }
+    .aegis-stage canvas { aspect-ratio: 1024 / 1400; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="site-header">
+      <a class="btn" href="../index.html">← Spelhörnan</a>
+      <h1 class="game-title">Station Aegis 5</h1>
+      <button class="btn blue" data-mute type="button">🔊 Ljud på</button>
+    </header>
+
+    <main class="game-layout aegis-wrap">
+      <div class="dmd">
+        <div class="score" id="score">0</div>
+        <div class="ball" id="ballInfo">BOLL 1/3<br>REKORD <span id="best">0</span></div>
+        <div class="msg" id="msg">&nbsp;</div>
+      </div>
+
+      <div class="stage aegis-stage">
+        <canvas id="board" width="1024" height="1400"></canvas>
+        <div class="overlay" id="overlay">
+          <h2 id="ovTitle">Station Aegis 5</h2>
+          <p id="ovText">Rädda stationen! Klara AEGIS-banorna, öppna Airlock med dropmålen och starta multiball.</p>
+          <button class="btn pink" id="start" type="button">Starta</button>
+        </div>
+      </div>
+
+      <div class="touch">
+        <button class="btn green" id="tLeft" type="button">◀ Flipper</button>
+        <button class="btn pink" id="tLaunch" type="button">Skjut</button>
+        <button class="btn green" id="tRight" type="button">Flipper ▶</button>
+      </div>
+
+      <p class="hint">Flipper: ←/Z och →/M · Skjut ut: håll mellanslag och släpp · Knuffa: A / D / W (för många = TILT)</p>
+    </main>
+  </div>
+  <script src="../js/common.js"></script>
+  <script src="../js/vendor/planck.min.js"></script>
+  <script src="../tables/aegis5.js"></script>
+  <script src="../js/aegis5/engine.js"></script>
+  <script src="../js/aegis5/game.js"></script>
+</body>
+</html>
