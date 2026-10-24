@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <title>Breakout – Spelhörnan</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <div class="wrap">
+    <header class="site-header">
+      <a class="btn" href="../index.html">← Spelhörnan</a>
+      <h1 class="game-title">Breakout</h1>
+      <button class="btn blue" data-mute type="button">🔊 Ljud på</button>
+    </header>
+
+    <main class="game-layout" style="--stage-w: 480px">
+      <div class="hud">
+        <div class="pill">Poäng<b id="score">0</b></div>
+        <div class="pill">Liv<b id="lives">3</b></div>
+        <div class="pill">Nivå<b id="level">1</b></div>
+        <div class="pill">Rekord<b id="best">0</b></div>
+      </div>
+
+      <div class="stage">
+        <canvas id="board" width="480" height="600"></canvas>
+        <div class="overlay" id="overlay">
+          <h2 id="ovTitle">Breakout</h2>
+          <p id="ovText">Styr plattan med musen, pilarna eller fingret. Klicka eller tryck mellanslag för att skjuta iväg bollen.</p>
+          <button class="btn pink" id="start" type="button">Starta</button>
+        </div>
+      </div>
+
+      <p class="hint">Styr: ← → eller musen/fingret · Skjut: mellanslag eller tryck på banan</p>
+    </main>
+  </div>
+  <script src="../js/common.js"></script>
+  <script src="../js/breakout.js"></script>
+</body>
+</html>

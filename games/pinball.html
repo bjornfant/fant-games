@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <title>Pinball – Spelhörnan</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <div class="wrap">
+    <header class="site-header">
+      <a class="btn" href="../index.html">← Spelhörnan</a>
+      <h1 class="game-title">Pinball</h1>
+      <button class="btn blue" data-mute type="button">🔊 Ljud på</button>
+    </header>
+
+    <main class="game-layout" style="--stage-w: 420px">
+      <div class="hud">
+        <div class="pill">Poäng<b id="score">0</b></div>
+        <div class="pill">Bollar<b id="balls">3</b></div>
+        <div class="pill">Rekord<b id="best">0</b></div>
+      </div>
+
+      <div class="stage">
+        <canvas id="board" width="420" height="660"></canvas>
+        <div class="overlay" id="overlay">
+          <h2 id="ovTitle">Pinball</h2>
+          <p id="ovText">Håll in mellanslag för att ladda fjädern och släpp för att skjuta ut bollen.</p>
+          <button class="btn pink" id="start" type="button">Starta</button>
+        </div>
+      </div>
+
+      <div class="touch">
+        <button class="btn green" id="tLeft" type="button">◀ Vänster</button>
+        <button class="btn pink" id="tLaunch" type="button">Skjut</button>
+        <button class="btn green" id="tRight" type="button">Höger ▶</button>
+      </div>
+
+      <p class="hint">Vänster flipper: ← eller Z · Höger flipper: → eller M · Skjut: mellanslag</p>
+    </main>
+  </div>
+  <script src="../js/common.js"></script>
+  <script src="../js/pinball.js"></script>
+</body>
+</html>

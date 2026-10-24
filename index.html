@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Spelhörnan</title>
+  <meta name="description" content="Spela roliga spel direkt i webbläsaren.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="wrap">
+    <header class="site-header">
+      <a class="logo" href="index.html" aria-label="Spelhörnan"><span>Spel</span><span>hör</span><span>nan</span><span>!</span></a>
+      <button class="btn blue" data-mute type="button">🔊 Ljud på</button>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div>
+          <span class="tag">⭐ Utvalt spel</span>
+          <h1>Pinball</h1>
+          <p>Slå flipperna, träffa bumpers och jaga rekordet. Du har tre bollar!</p>
+          <a class="btn" href="games/pinball.html">▶ Spela nu</a>
+          <div class="best">Ditt rekord: <b data-best="pinball-best">0</b></div>
+        </div>
+        <svg viewBox="0 0 200 260" aria-hidden="true">
+          <rect x="10" y="10" width="180" height="240" rx="28" fill="#fff4d6" stroke="#2b2d42" stroke-width="6"/>
+          <circle cx="70" cy="80" r="22" fill="#ffc93c" stroke="#2b2d42" stroke-width="5"/>
+          <circle cx="135" cy="70" r="22" fill="#3ec5ff" stroke="#2b2d42" stroke-width="5"/>
+          <circle cx="105" cy="130" r="18" fill="#3ddc97" stroke="#2b2d42" stroke-width="5"/>
+          <line x1="55" y1="205" x2="95" y2="222" stroke="#ff5d8f" stroke-width="12" stroke-linecap="round"/>
+          <line x1="145" y1="205" x2="105" y2="222" stroke="#ff5d8f" stroke-width="12" stroke-linecap="round"/>
+          <circle cx="100" cy="175" r="9" fill="#8b5cf6" stroke="#2b2d42" stroke-width="4"/>
+        </svg>
+      </section>
+
+      <h2 class="section-title">Alla spel</h2>
+      <div class="grid">
+        <a class="card" href="games/pinball.html">
+          <div class="thumb" style="background:var(--pink)">🎯</div>
+          <div class="body">
+            <h3>Pinball</h3>
+            <p>Klassisk flipper med bumpers och poäng.</p>
+            <div class="best">Rekord: <b data-best="pinball-best">0</b></div>
+          </div>
+        </a>
+        <a class="card" href="games/breakout.html">
+          <div class="thumb" style="background:var(--blue)">🧱</div>
+          <div class="body">
+            <h3>Breakout</h3>
+            <p>Studsa bollen och krossa alla block.</p>
+            <div class="best">Rekord: <b data-best="breakout-best">0</b></div>
+          </div>
+        </a>
+        <div class="card soon">
+          <div class="thumb">🚧</div>
+          <div class="body">
+            <h3>Fler spel snart…</h3>
+            <p>Här kommer nästa spel att dyka upp.</p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>Gjort med HTML, CSS och JavaScript. Rekorden sparas i din webbläsare.</footer>
+  </div>
+  <script src="js/common.js"></script>
+</body>
+</html>
