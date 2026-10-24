@@ -207,3 +207,26 @@ footer { margin-top: 48px; text-align: center; opacity: .7; font-size: .9rem; }
   .hero { grid-template-columns: 1fr; padding: 24px; text-align: center; }
   .hero svg { order: -1; max-width: 180px; }
 }
+
+/* ---------- Biljard ---------- */
+.players { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; width: min(100%, var(--stage-w, 800px)); }
+.player {
+  padding: 8px 14px;
+  background: #fff;
+  border: 3px solid var(--ink);
+  border-radius: 14px;
+  box-shadow: 3px 3px 0 var(--ink);
+  opacity: .65;
+}
+.player.active { opacity: 1; background: var(--yellow); }
+.pname { font-weight: 900; margin-bottom: 4px; }
+.minis { display: flex; flex-wrap: wrap; gap: 4px; min-height: 18px; font-size: .85rem; }
+.mb { width: 18px; height: 18px; border-radius: 50%; border: 2px solid var(--ink); background: var(--c); }
+.mb.stripe { background: linear-gradient(#fff 0 25%, var(--c) 25% 75%, #fff 75%); }
+.mb.out { opacity: .2; }
+.status { min-height: 1.5em; font-size: 1.05rem; text-align: center; }
+.controls { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; justify-content: center; width: min(100%, var(--stage-w, 800px)); }
+.controls input[type=range] { flex: 1; min-width: 140px; max-width: 320px; accent-color: var(--pink); }
+.levels { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+.overlay .small { font-size: .85rem; opacity: .8; margin-top: 8px; }
+@media (max-width: 560px) { .players { grid-template-columns: 1fr; } }
