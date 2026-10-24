@@ -248,6 +248,12 @@
     // Slingshots
     T.slings.forEach(s => {
       const on = (flash[s.id] || 0) > g.time;
+      const xs = s.pts.map(p => p[0]), ys = s.pts.map(p => p[1]);
+      const x0 = Math.min(...xs), x1 = Math.max(...xs), y0 = Math.min(...ys), y1 = Math.max(...ys);
+      if (sprite('sling', (x0 + x1) / 2, (y0 + y1) / 2, x1 - x0, y1 - y0, 0, s.id === 'slingR')) {
+        if (on) { ctx.save(); ctx.globalCompositeOperation = 'lighter'; path(s.pts, true); ctx.fillStyle = 'rgba(255,208,224,.45)'; ctx.fill(); ctx.restore(); }
+        return;
+      }
       path(s.pts, true); ctx.fillStyle = on ? '#ffd0e0' : '#7a4a3a'; ctx.fill();
       ctx.strokeStyle = '#2b2d42'; ctx.lineWidth = 5; ctx.stroke();
       ctx.strokeStyle = on ? '#fff' : '#ff5d8f'; ctx.lineWidth = 8; path(s.kick); ctx.stroke();
@@ -256,7 +262,14 @@
     // Bumpers
     T.bumpers.forEach((b, i) => {
       const on = (flash[b.id] || 0) > g.time, r = b.r + (on ? 6 : 0);
-      if (!sprite('bumper' + (i + 1), b.x, b.y, r * 2.4, r * 2.4)) {
+      if (sprite('bumper' + (i + 1), b.x, b.y, r * 2.4, r * 2.4)) {
+        if (on) {
+          ctx.save(); ctx.globalCompositeOperation = 'lighter';
+          const gl = ctx.createRadialGradient(b.x, b.y, r * 0.3, b.x, b.y, r * 1.5);
+          gl.addColorStop(0, b.color); gl.addColorStop(1, 'rgba(0,0,0,0)');
+          ctx.globalAlpha = 0.8; ctx.fillStyle = gl; ctx.beginPath(); ctx.arc(b.x, b.y, r * 1.5, 0, 7); ctx.fill(); ctx.restore();
+        }
+      } else {
         ctx.save(); if (on) { ctx.shadowColor = b.color; ctx.shadowBlur = 40; }
         ctx.fillStyle = on ? '#fff' : b.color; ctx.strokeStyle = '#14141b'; ctx.lineWidth = 6;
         ctx.beginPath(); ctx.arc(b.x, b.y, r, 0, 7); ctx.fill(); ctx.stroke(); ctx.restore();
@@ -299,6 +312,15 @@
     // Flippers
     sim.flippers.forEach(drawFlipper);
 
+    // Plunger (under rännans golv; dras nedåt när den laddas)
+    const laneBall = sim.balls.find(b => b.state === 'lane');
+    const comp = laneBall ? charge * 18 : 0;
+    ctx.strokeStyle = '#d9c39a'; ctx.lineWidth = 4; ctx.beginPath();
+    const springTop = 2538 + comp;
+    for (let k = 0; k <= 8; k++) ctx.lineTo(955 + (k % 2 ? 12 : -12), springTop + (k / 8) * (2556 - springTop));
+    ctx.stroke();
+    if (!sprite('plunger', 955, 2474 + 32 + comp, 44, 64)) { ctx.fillStyle = '#c8923a'; ctx.fillRect(935, 2474 + comp, 40, 14); }
+
     // Bollar: normala först, rampbollar ovanpå
     sim.balls.filter(b => b.mode === 'normal').forEach(b => drawBall(b));
     T.ramps.forEach(r => {
@@ -306,13 +328,6 @@
     });
     sim.balls.filter(b => b.mode === 'ramp').forEach(b => drawBall(b));
 
-    // Fjäder
-    const laneBall = sim.balls.find(b => b.state === 'lane');
-    const compress = laneBall ? charge * 50 : 0;
-    ctx.strokeStyle = '#d9c39a'; ctx.lineWidth = 5; ctx.beginPath();
-    for (let k = 0; k <= 8; k++) { const y = 2420 + compress + (k / 8) * (2466 - 2420 - compress); ctx.lineTo(955 + (k % 2 ? 14 : -14), y); k === 0 && ctx.moveTo(955, y); }
-    ctx.stroke();
-    if (!sprite('plunger', 955, 2442 + compress, 44, 90)) { ctx.fillStyle = '#c8923a'; ctx.fillRect(935, 2440 + compress, 40, 14); }
   }
 
   function render(t) {

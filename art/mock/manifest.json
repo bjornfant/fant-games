@@ -1,0 +1,74 @@
+{
+  "bumper1": {
+    "w": 448,
+    "h": 448,
+    "gameW": 112,
+    "gameH": 112
+  },
+  "bumper2": {
+    "w": 448,
+    "h": 448,
+    "gameW": 112,
+    "gameH": 112
+  },
+  "bumper3": {
+    "w": 448,
+    "h": 448,
+    "gameW": 112,
+    "gameH": 112
+  },
+  "flipper": {
+    "w": 780,
+    "h": 160,
+    "gameW": 195,
+    "gameH": 40
+  },
+  "flipper_mid": {
+    "w": 600,
+    "h": 136,
+    "gameW": 150,
+    "gameH": 34
+  },
+  "sling": {
+    "w": 440,
+    "h": 840,
+    "gameW": 110,
+    "gameH": 210
+  },
+  "drop": {
+    "w": 224,
+    "h": 64,
+    "gameW": 56,
+    "gameH": 16
+  },
+  "standup": {
+    "w": 56,
+    "h": 176,
+    "gameW": 14,
+    "gameH": 44
+  },
+  "spinner": {
+    "w": 280,
+    "h": 64,
+    "gameW": 70,
+    "gameH": 16
+  },
+  "airlock": {
+    "w": 396,
+    "h": 396,
+    "gameW": 99,
+    "gameH": 99
+  },
+  "ball": {
+    "w": 176,
+    "h": 176,
+    "gameW": 44,
+    "gameH": 44
+  },
+  "plunger": {
+    "w": 176,
+    "h": 256,
+    "gameW": 44,
+    "gameH": 64
+  }
+}

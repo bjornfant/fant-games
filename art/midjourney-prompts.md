@@ -24,6 +24,50 @@ Parametrarna nedan är de jag känner till för V7 (`--ar`, `--style raw`, `--st
 
 ---
 
+## Snabbspår: måla över mockarna (rekommenderas)
+
+Bakgrunden blev bra när Midjourney fick en layoutriktig mockup som bildprompt. Samma sak gäller delarna.
+Det finns färdiga mockar för alla sprites i `art/mock/magenta/` (på platt magenta, redo för Midjourney) och en översikt i `art/mock/contact-sheet.png`.
+Spelet använder redan mockarna (`art/source/*.png`), så du kan byta en sprite i taget.
+
+**Mall (byt `[MOCK]` mot uppladdad bild och ändra `--ar` enligt tabellen):**
+
+```
+[MOCK] repaint this exact object as a hand-inked comic style brutalist sci-fi pinball
+part, keep the exact silhouette, proportions, orientation and camera angle, top-down
+orthographic view, lit from the upper left, worn ochre and rust metal with subtle
+cyan and orange accents, no cast shadow, no extra objects, no text, isolated on a
+solid flat magenta background --ar 1:1 --iw 3 --sref [BAKGRUNDEN] --sw 100 --style raw --v 7
+```
+
+| Sprite | Filer | `--ar` | Spelets storlek | Särskilt att tänka på |
+|---|---|---|---|---|
+| Bumper | `bumper1`, `bumper2`, `bumper3` | `1:1` | 112 × 112 | Behåll färgringen (cyan, orange, rosa). Glöd lägger spelet på själv. |
+| Flipper | `flipper` | `5:1` | 195 × 40 | Pekar åt **höger**, pivot till vänster. Högra flippern speglas i spelet. |
+| Mid-flipper | `flipper_mid` | `22:5` | 150 × 34 | Samma som ovan, kortare. |
+| Slingshot | `sling` | `11:21` | 110 × 210 | Vänster version. Den lysande kanten är sparkytan (diagonalen). Högra speglas. |
+| Dropmål | `drop` | `7:2` | 56 × 16 | Cyan ljuslist i mitten. |
+| Stand-up-mål | `standup` | `7:22` | 14 × 44 | Grön ljuslist i mitten. |
+| Spinner | `spinner` | `35:8` | 70 × 16 | Sedd uppifrån: tunn platta på en axel. |
+| Airlock | `airlock` | `1:1` | 99 × 99 | Mörkt hål i mitten där bollen försvinner. |
+| Kula | `ball` | `1:1` | 44 × 44 | Spegelblank stål. Måste synas mot mörk bakgrund. |
+| Plunger | `plunger` | `11:16` | 44 × 64 | Knopp överst, stång nedåt. |
+
+**Efter Midjourney:** spara bilden (t.ex. `bumper1_mj.png`) och kör
+
+```
+python3 tools/process-sprite.py bumper1_mj.png bumper1
+```
+
+Skriptet tar bort magenta-bakgrunden (mjuk kant, ingen rosa kantskugga) och skalar till exakt rätt storlek.
+Resultatet hamnar i `art/source/bumper1.png`, och spelet använder det direkt. Proportionerna måste vara lika som mockens (använd samma `--ar`), annars sträcks bilden.
+
+Tre saker gör störst skillnad: **behåll silhuetten** (bumpern ska vara rund, flippern avsmalnande, annars passar den inte fysiken), **ingen skugga** och **håll ljuset uppe till vänster**.
+
+Det som inte finns som mock än: texturer för ramper och räcken, DMD-ram, titel- och game over-bild samt loopande videor. De kräver mer kodstöd, så vi tar dem efter att spritesen sitter.
+
+---
+
 ## Steg 1 – Hitta stilen
 
 Kör denna först och välj den bild du gillar bäst. Den länken blir `[STYLE]` för allt annat.
